@@ -1,0 +1,38 @@
+/* Assignment 1: Flixster */
+
+:root {
+  background-color: #272727;
+  color: #fff;
+  margin: 20px;
+}
+header {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+#movie-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.movie-container {
+  margin: 10px;
+}
+.movie-image {
+  height: 200px;
+  width: 150px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.movie-image img {
+  width: 100%;
+}
+.movie-title {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.movie-votes {
+
+}
