@@ -1,6 +1,7 @@
 /* Assignment 1: Flixster */
 
 @import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;1,300&display=swap');
 
 :root {
   background-color: #6e304b;
@@ -15,15 +16,25 @@ header {
   font-family: 'Mate SC', serif;
 }
 
+h3 {
+  font-family: 'Nunito', sans-serif;
+}
+
 #movie-grid {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
+#align-playing {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 .movie-container {
-  margin: 30px;
+  margin-bottom: auto;
   width: 180px;
+  font-family: 'Nunito', sans-serif;
 }
 
 .movie-image {
