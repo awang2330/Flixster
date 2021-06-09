@@ -1,15 +1,20 @@
 /* Assignment 1: Flixster */
 
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
 :root {
   background-color: #6e304b;
   color: #fff;
   margin: 20px;
 }
+
 header {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 600;
   text-align: center;
+  font-family: 'Mate SC', serif;
 }
+
 #movie-grid {
   display: flex;
   justify-content: space-between;
@@ -17,22 +22,25 @@ header {
 }
 
 .movie-container {
-  margin: 10px;
+  margin: 30px;
+  width: 180px;
 }
+
 .movie-image {
-  height: 200px;
-  width: 150px;
   border-radius: 4px;
   overflow: hidden;
 }
+
 .movie-image img {
   width: 100%;
 }
+
 .movie-title {
   font-size: 15px;
   font-weight: 600;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  max-width: 100%;
 }
+
 .movie-votes {
 
 }
