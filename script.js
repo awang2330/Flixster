@@ -3,6 +3,7 @@
 /* API Info */
 const apiKey = "ec9d43fea05c5d5d0c487254238e6858"
 const apiURL = "https://api.themoviedb.org/3/movie/now_playing?"
+const imageURL = "https://image.tmdb.org/t/p/"
 
 /* Other variables */
 var pageNum = 1
@@ -29,7 +30,7 @@ function addMovieToGrid(movie) {
   return `
     <div class="movie-container">
       <div class="movie-image">
-        <img src="${movie.poster_path}" alt="${movie.title}">
+        <img src="${imageURL}original/${movie.poster_path}" alt="${movie.title}">
       </div>
       <div class="movie-votes">${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
