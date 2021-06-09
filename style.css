@@ -7,6 +7,7 @@
   background-color: #6e304b;
   color: #fff;
   margin: 20px;
+  font-family: 'Nunito', sans-serif;
 }
 
 header {
@@ -33,6 +34,7 @@ button {
 .search-button {
   padding: 5px;
   background: transparent;
+  cursor: pointer;
 }
 
 .search-button img {
@@ -71,6 +73,27 @@ button {
   max-width: 100%;
 }
 
-.movie-votes {
+.hidden {
+  display: none;
+}
 
+#load-more-align {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more {
+  background-color: #dbb0a0;
+  border: 2px solid #dbb0a0;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+.load-more:hover {
+  background-color: #ffd4c5;
+  border: 2px solid #e4bfb3;
 }

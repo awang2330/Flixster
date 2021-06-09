@@ -12,9 +12,12 @@ var pageNum = 1
 /* Query Selectors */
 const movieGrid = document.getElementById('movie-grid')
 const searchMovie = document.querySelector("form")
+const loadMore = document.querySelector(".load-more")
+const heading = document.querySelector(".heading")
 
 /* Event Listeners */
 searchMovie.addEventListener("submit", displaySearchResults)
+loadMore.addEventListener("click", loadMoreMovies)
 
 /** Displays the movie grid by adding each movie from a movie list */
 async function updateMovieGrid() {
@@ -40,6 +43,7 @@ function addMovieToGrid(movie) {
   `
 }
 
+/** Display the search bar results */
 async function displaySearchResults(event) {
   event.preventDefault()
   const query = event.target.movie.value
@@ -48,15 +52,24 @@ async function displaySearchResults(event) {
   const response = await fetch(searchMovieSearch)
   const responseData = await response.json()
 
-  console.log(responseData)
-
   // clear the movie grid befor displaying results
   movieGrid.innerHTML = ``
+
+  heading.innerHTML = `Search Results: ${query}`
 
   responseData.results.forEach(element => {
     movieGrid.innerHTML += addMovieToGrid(element)
   })
 }
+
+/** Display more movies */
+function loadMoreMovies() {
+  pageNum++
+  updateMovieGrid()
+}
+
+
+/******* EXTRA *******/
 
 /** Add event listeners on movie containers to make pop-ups */
 function clickPopUp() {
@@ -75,6 +88,7 @@ function clickPopUp() {
 */
 window.onload = function () {
   // display the movie grid
+  console.log("here")
   updateMovieGrid()
 
   // pop up appear on click
