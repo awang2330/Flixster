@@ -20,6 +20,25 @@ h3 {
   font-family: 'Nunito', sans-serif;
 }
 
+form {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+button {
+  border: none;
+}
+
+.search-button {
+  padding: 5px;
+  background: transparent;
+}
+
+.search-button img {
+  width: 20px;
+}
+
 #movie-grid {
   display: flex;
   justify-content: space-between;
@@ -32,7 +51,7 @@ h3 {
 }
 
 .movie-container {
-  margin-bottom: auto;
+  margin-bottom: 15px;
   width: 180px;
   font-family: 'Nunito', sans-serif;
 }
