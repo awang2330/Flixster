@@ -28,6 +28,8 @@ async function updateMovieGrid() {
   responseData.results.forEach(element => {
     movieGrid.innerHTML += addMovieToGrid(element)
   });
+
+  loadMore.classList.remove("hidden")
 }
 
 /** Take in a movie object and display the movie image, movie title and movie votes */
