@@ -1,46 +1,40 @@
 /* Assignment 1: Flixster */
 
-// const movieInfo = {
-//   title: "", 
-//   posterImage: "", 
-//   votes: ""
-// }
+/* API Info */
+const apiKey = "ec9d43fea05c5d5d0c487254238e6858"
+const apiURL = "https://api.themoviedb.org/3/movie/now_playing?"
 
-const movieInfo = [
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-  {title: "Harry Potter", posterImage: "imgs/harry-potter.jpg", votes: "2"},
-]
+/* Other variables */
+var pageNum = 1
 
+/* Query Selectors */
 const movieGrid = document.getElementById('movie-grid')
+
+/** Displays the movie grid by adding each movie from a movie list */
+async function updateMovieGrid() {
+  apiURLSearch = apiURL + "api_key=" + apiKey + "&page=" + pageNum
+  const response = await fetch(apiURLSearch)
+  // await fetch(`${apiURL}api_key=${apiKey}&query=${currentMovies}`)
+  console.log(apiURLSearch)
+  const responseData = await response.json()
+
+  console.log(responseData)
+  responseData.results.forEach(element => {
+    movieGrid.innerHTML += addMovieToGrid(element)
+  });
+}
 
 /** Take in a movie object and display the movie image, movie title and movie votes */
 function addMovieToGrid(movie) {
   return `
     <div class="movie-container">
       <div class="movie-image">
-        <img src="${movie.posterImage}" alt="${movie.title}">
+        <img src="${movie.poster_path}" alt="${movie.title}">
       </div>
-      <div class="movie-votes">${movie.votes}</div>
+      <div class="movie-votes">${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
     </div>
   `
-}
-
-/** Displays the movie grid by adding each movie from a movie list */
-function updateMovieGrid() {
-  movieInfo.forEach(element => {
-    movieGrid.innerHTML += addMovieToGrid(element)
-  });
 }
 
 /** Add event listeners on movie containers to make pop-ups */
