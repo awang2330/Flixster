@@ -8,6 +8,7 @@ const searchMovieURL = "https://api.themoviedb.org/3/search/movie?"
 
 /* Other variables */
 var pageNum = 1
+// var movieGridDiv
 
 /* Query Selectors */
 const movieGrid = document.getElementById('movie-grid')
@@ -16,6 +17,8 @@ const inputField = document.querySelector("input")
 const loadMore = document.querySelector(".load-more")
 const heading = document.querySelector(".heading")
 const exitSearch = document.querySelector(".exit-search")
+const movieGridContainer = document.querySelector("#movieGridContainer")
+console.log(movieGridContainer)
 
 /* Event Listeners */
 searchMovie.addEventListener("submit", displaySearchResults)
@@ -23,18 +26,32 @@ loadMore.addEventListener("click", loadMoreMovies)
 inputField.addEventListener("click", clearMovieGrid)
 exitSearch.addEventListener("click", reloadCurrentMovies) // clear past movies & display current movies
 
+
 /** Displays the movie grid by adding each movie from a movie list */
 async function updateMovieGrid() {
   nowPlayingMovieSearch = nowPlayingMovieURL + "api_key=" + apiKey + "&page=" + pageNum
   const response = await fetch(nowPlayingMovieSearch)
   const responseData = await response.json()
 
+  // var movieGridDiv = document.createElement("div");
+  // movieGridDiv.setAttribute("id", "movieGridContainer");
+  // console.log(movieGridDiv)
+
+  
   responseData.results.forEach(element => {
     movieGrid.innerHTML += addMovieToGrid(element)
   });
 
-  loadMore.classList.remove("hidden")
+  // document.querySelector("#movie-grid").append(movieGridDiv)
+  // console.log(document.querySelector("#movie-grid"))
+  // loadMore.classList.remove("hidden")
+
+  // const moviePopup = document.querySelectorAll(".movie-popup")
+  // console.log(moviePopup)
 }
+
+const moviePopup = document.querySelectorAll(".movie-popup")
+console.log(moviePopup)
 
 /** Take in a movie object and display the movie image, movie title and movie votes */
 function addMovieToGrid(movie) {
@@ -45,6 +62,9 @@ function addMovieToGrid(movie) {
       </div>
       <div class="movie-votes">${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
+      <div class="movie-popup">
+        ${movie.overview}
+      </div>
     </div>
   `
 }
@@ -88,14 +108,23 @@ function reloadCurrentMovies() {
   updateMovieGrid()
 }
 
-/******* EXTRA *******/
 /** Add event listeners on movie containers to make pop-ups */
 function clickPopUp() {
-  const movieList = document.querySelectorAll(".movie-container")
-  for (let i = 0; i < movieList.length; i++) {
-    console.log(movieList[i])
-    movieList[i].addEventListener('click', () => {
-      //TODO::popup
+  const moviePopup = document.getElementsByClassName("movie-popup")
+  const movieImages = document.getElementsByClassName("mo")
+  console.log(moviePopup)
+
+  // const moviePopup = document.querySelectorAll(".movie-popup")
+  // console.log(moviePopup)
+  // const movieGridContainer = document.querySelector("#movieGridContainer")
+  // console.log(movieGridContainer)
+  // const movieList = document.querySelectorAll(".movie-image")
+  // console.log(movieList)
+  for (let i = 0; i < moviePopup.length; i++) {
+    // console.log(moviePopup[i])
+    moviePopup[i].addEventListener('click', () => {
+      console.log("click",i)
+      this.classList.remove("hidden")
     })
   }
 }
