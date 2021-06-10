@@ -2,7 +2,7 @@
 
 Submitted by: **Ann Wang**
 
-Estimated time spent: **10** hours spent in total
+Estimated time spent: **13** hours spent in total
 
 Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
@@ -21,7 +21,7 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 - [ ] Deploy website using GitHub Pages. 
 - [Y] Allow user to view more details about a movie within a popup.
-- [ ] Improve the user experience through CSS & animation.
+- [Y] Improve the user experience through CSS & animation.
 - [ ] Allow movie video trailers to be played using [embedded YouTube](https://support.google.com/youtube/answer/171780?hl=en)
 - [ ] Implement anything else that you can get done to improve the app functionality!
 
@@ -35,11 +35,11 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Yes, lab3
+After lab 3 and learning about how to use APIs, I felt more prepared to complete the requried parts of the assignment. I felt unprepared for implementing the stretch feature popups since I did not know how to add event listeners on all the elements with the same class name. I was also confused as to why my event listeners outside of the function that I added the movie containers returned null. I could only access the elements within a function. I also had some trouble with flexboxes and aligning text with movie grid containers, but after some testing and searching, I was able to get it.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+I would make different sections in the home page with not only the current movies, but also highest rated, featured, etc. This would give the user more selection of movies without searching for a specific movie. I would also add a navigation bar for that. 
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 

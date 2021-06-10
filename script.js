@@ -41,7 +41,9 @@ async function updateMovieGrid() {
   for (let i = 0; i < movieImages.length; i++) {
     movieImages[i].addEventListener("click", () => {
       moviePopup[i].style.visibility = "visible"
+      moviePopup[i].style.animation = "fadeInAnimation ease 2s"
       popupNum = i
+
     })
   }
 
@@ -51,7 +53,6 @@ async function updateMovieGrid() {
       moviePopup[i].style.visibility = "hidden"
     })
   }
-
   loadMore.classList.remove("hidden")
 }
 
@@ -102,6 +103,25 @@ async function displaySearchResults(event) {
   responseData.results.forEach(element => {
     movieGrid.innerHTML += addMovieToGrid(element)
   })
+
+  /** Movie Popup */
+  const moviePopup = document.querySelectorAll(".movie-popup-container")
+  const movieImages = document.querySelectorAll(".movie-image")
+
+  for (let i = 0; i < movieImages.length; i++) {
+    movieImages[i].addEventListener("click", () => {
+      moviePopup[i].style.visibility = "visible"
+      popupNum = i
+    })
+  }
+
+  const popupClose = document.querySelectorAll(".popup-close > button")
+  for (let i = 0; i < popupClose.length; i++) {
+    popupClose[i].addEventListener("click", () => {
+      moviePopup[i].style.visibility = "hidden"
+    })
+  }
+  // loadMore.classList.remove("hidden")
 }
 
 /** Clear movie grid area when search bar is clicked */
@@ -124,24 +144,6 @@ function reloadCurrentMovies() {
   updateMovieGrid()
 }
 
-/** Add event listeners on movie containers to make pop-ups */
-function clickPopUp() {
-  const moviePopup = document.getElementsByClassName('movie-popup')
-  var movieImages = document.getElementsByClassName('movie-image')
-  console.log(movieImages)
-  console.log(movieImages.length)
-
-  console.log(document.querySelectorAll(".movie-popup"))
-  console.log(movieGrid)
-  for (let i = 0; i < movieImages.length; i++) {
-    console.log(movieImages[i])
-    movieImages[i].addEventListener("click", () => {
-      console.log("click",i)
-      this.classList.remove("hidden")
-    })
- }
-}
-
 /*
 * functions here execute as soon as the page loads
 */
@@ -149,6 +151,4 @@ window.onload = function () {
   // display the movie grid
   updateMovieGrid()
 
-  // pop up appear on click
-  // clickPopUp()
 }
