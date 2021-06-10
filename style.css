@@ -134,7 +134,7 @@ button {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  background: #fff;
+  background: rgba(165, 97, 60, 0.6);
 }
 
 .movie-popup {
@@ -145,14 +145,23 @@ button {
   width: 50%;
 
   padding: 20px;
-  background: #57394a;
-}
-
-.popup-img, .movie-overview {
+  
+  background: #8f3a60;
+  background: #a5613c;
 }
 
 .popup-img img {
   width: 100%;
+}
+
+.popup-close {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-overview {
+  margin: 10px;
 }
 
 /* Responsive */

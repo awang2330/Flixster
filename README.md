@@ -2,7 +2,7 @@
 
 Submitted by: **Ann Wang**
 
-Estimated time spent: **6** hours spent in total
+Estimated time spent: **10** hours spent in total
 
 Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
@@ -13,14 +13,14 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 - [Y] User can view a list of current movies from The Movie Database API as a grid view.
 - [Y] For each movie displayed, user can see the following details: `Title`, `Poster Image`, `Votes`.
 - [Y] User can load more current movies by clicking a button at the bottom of the list. The page should not refresh; movies should simply be added to the bottom.
-- [ ] Allow users to search for movies and display them in a grid view. Users should be able to clear results and view previous current movies displayed.
+- [Y] Allow users to search for movies and display them in a grid view. Users should be able to clear results and view previous current movies displayed.
 - [Y] Website accounts for basic HTML/CSS accessibility features.
 - [Y] Website should be responsive.
 
 #### STRETCH FEATURES
 
 - [ ] Deploy website using GitHub Pages. 
-- [ ] Allow user to view more details about a movie within a popup.
+- [Y] Allow user to view more details about a movie within a popup.
 - [ ] Improve the user experience through CSS & animation.
 - [ ] Allow movie video trailers to be played using [embedded YouTube](https://support.google.com/youtube/answer/171780?hl=en)
 - [ ] Implement anything else that you can get done to improve the app functionality!
@@ -35,7 +35,7 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, lab3
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
