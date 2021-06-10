@@ -96,3 +96,25 @@ button {
   background-color: #ffd4c5;
   border: 2px solid #e4bfb3;
 }
+
+@media only screen and (max-width: 1000px) {
+  #align-playing {
+    margin-left: 50px;
+    margin-right: 50px;
+  }  
+
+  .movie-container {
+    width: 130px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #align-playing {
+    margin-left: 10px;
+    margin-right: 10px;
+  }  
+
+  .movie-container {
+    width: 100px;
+  }
+}
