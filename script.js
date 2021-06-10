@@ -12,12 +12,16 @@ var pageNum = 1
 /* Query Selectors */
 const movieGrid = document.getElementById('movie-grid')
 const searchMovie = document.querySelector("form")
+const inputField = document.querySelector("input")
 const loadMore = document.querySelector(".load-more")
 const heading = document.querySelector(".heading")
+const exitSearch = document.querySelector(".exit-search")
 
 /* Event Listeners */
 searchMovie.addEventListener("submit", displaySearchResults)
 loadMore.addEventListener("click", loadMoreMovies)
+inputField.addEventListener("click", clearMovieGrid)
+exitSearch.addEventListener("click", updateMovieGrid)
 
 /** Displays the movie grid by adding each movie from a movie list */
 async function updateMovieGrid() {
@@ -54,14 +58,22 @@ async function displaySearchResults(event) {
   const response = await fetch(searchMovieSearch)
   const responseData = await response.json()
 
-  // clear the movie grid befor displaying results
+  // clear the movie grid before displaying results
   movieGrid.innerHTML = ``
 
+  heading.classList.remove("hidden")
   heading.innerHTML = `Search Results: ${query}`
 
   responseData.results.forEach(element => {
     movieGrid.innerHTML += addMovieToGrid(element)
   })
+}
+
+/** Clear movie grid area when search bar is clicked */
+function clearMovieGrid() {
+  movieGrid.innerHTML = ``
+  loadMore.classList.add("hidden")
+  heading.classList.add("hidden")
 }
 
 /** Display more movies */
@@ -71,8 +83,8 @@ function loadMoreMovies() {
 }
 
 
-/******* EXTRA *******/
 
+/******* EXTRA *******/
 /** Add event listeners on movie containers to make pop-ups */
 function clickPopUp() {
   const movieList = document.querySelectorAll(".movie-container")
@@ -90,7 +102,6 @@ function clickPopUp() {
 */
 window.onload = function () {
   // display the movie grid
-  console.log("here")
   updateMovieGrid()
 
   // pop up appear on click
