@@ -21,7 +21,7 @@ const exitSearch = document.querySelector(".exit-search")
 searchMovie.addEventListener("submit", displaySearchResults)
 loadMore.addEventListener("click", loadMoreMovies)
 inputField.addEventListener("click", clearMovieGrid)
-exitSearch.addEventListener("click", updateMovieGrid)
+exitSearch.addEventListener("click", reloadCurrentMovies) // clear past movies & display current movies
 
 /** Displays the movie grid by adding each movie from a movie list */
 async function updateMovieGrid() {
@@ -82,7 +82,11 @@ function loadMoreMovies() {
   updateMovieGrid()
 }
 
-
+function reloadCurrentMovies() {
+  movieGrid.innerHTML = ``
+  heading.innerHTML = "Now playing"
+  updateMovieGrid()
+}
 
 /******* EXTRA *******/
 /** Add event listeners on movie containers to make pop-ups */
