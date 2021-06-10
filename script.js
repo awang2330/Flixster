@@ -11,14 +11,12 @@ var pageNum = 1
 // var movieGridDiv
 
 /* Query Selectors */
-const movieGrid = document.getElementById('movie-grid')
+const movieGrid = document.querySelector('#movie-grid')
 const searchMovie = document.querySelector("form")
 const inputField = document.querySelector("input")
 const loadMore = document.querySelector(".load-more")
 const heading = document.querySelector(".heading")
 const exitSearch = document.querySelector(".exit-search")
-const movieGridContainer = document.querySelector("#movieGridContainer")
-console.log(movieGridContainer)
 
 /* Event Listeners */
 searchMovie.addEventListener("submit", displaySearchResults)
@@ -33,25 +31,25 @@ async function updateMovieGrid() {
   const response = await fetch(nowPlayingMovieSearch)
   const responseData = await response.json()
 
-  // var movieGridDiv = document.createElement("div");
-  // movieGridDiv.setAttribute("id", "movieGridContainer");
-  // console.log(movieGridDiv)
-
-  
   responseData.results.forEach(element => {
     movieGrid.innerHTML += addMovieToGrid(element)
-  });
+  })
 
-  // document.querySelector("#movie-grid").append(movieGridDiv)
-  // console.log(document.querySelector("#movie-grid"))
-  // loadMore.classList.remove("hidden")
+  // const moviePopup = document.getElementsByClassName('movie-popup')
+  // const movieImages = document.getElementsByClassName('movie-image')
 
-  // const moviePopup = document.querySelectorAll(".movie-popup")
-  // console.log(moviePopup)
+  const moviePopup = document.querySelectorAll(".movie-popup")
+  const movieImages = document.querySelectorAll(".movie-image")
+
+  console.log(movieImages)
+
+  for (let i = 0; i < movieImages.length; i++) {
+    console.log(movieImages[i])
+    movieImages[i].addEventListener("click", () => {
+      moviePopup[i].style.visibility = "visible"
+    })
+ }
 }
-
-const moviePopup = document.querySelectorAll(".movie-popup")
-console.log(moviePopup)
 
 /** Take in a movie object and display the movie image, movie title and movie votes */
 function addMovieToGrid(movie) {
@@ -60,7 +58,7 @@ function addMovieToGrid(movie) {
       <div class="movie-image">
         <img src="${imageURL}original/${movie.poster_path}" alt="${movie.title}">
       </div>
-      <div class="movie-votes">${movie.vote_average}</div>
+      <div class="movie-votes">⭐${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
       <div class="movie-popup">
         ${movie.overview}
@@ -110,24 +108,27 @@ function reloadCurrentMovies() {
 
 /** Add event listeners on movie containers to make pop-ups */
 function clickPopUp() {
-  const moviePopup = document.getElementsByClassName("movie-popup")
-  const movieImages = document.getElementsByClassName("mo")
-  console.log(moviePopup)
+  const moviePopup = document.getElementsByClassName('movie-popup')
+  var movieImages = document.getElementsByClassName('movie-image')
+  console.log(movieImages)
+  console.log(movieImages.length)
 
-  // const moviePopup = document.querySelectorAll(".movie-popup")
-  // console.log(moviePopup)
-  // const movieGridContainer = document.querySelector("#movieGridContainer")
-  // console.log(movieGridContainer)
-  // const movieList = document.querySelectorAll(".movie-image")
-  // console.log(movieList)
-  for (let i = 0; i < moviePopup.length; i++) {
-    // console.log(moviePopup[i])
-    moviePopup[i].addEventListener('click', () => {
+  console.log(document.querySelectorAll(".movie-popup"))
+  console.log(movieGrid)
+  for (let i = 0; i < movieImages.length; i++) {
+    console.log(movieImages[i])
+    movieImages[i].addEventListener("click", () => {
       console.log("click",i)
       this.classList.remove("hidden")
     })
-  }
+ }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const moviePopup = document.getElementsByClassName('movie-popup')
+  console.log(document.getElementsByClassName('movie-popup').length)
+})
+
 // addEventListener('click', loadPopUp(this))
 
 /*
@@ -138,5 +139,6 @@ window.onload = function () {
   updateMovieGrid()
 
   // pop up appear on click
-  clickPopUp()
+  // clickPopUp()
+
 }
