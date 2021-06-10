@@ -108,18 +108,20 @@ button {
 }
 
 .load-more {
-  background-color: #fff;
-  border: 2px solid #fff;
+  background-color: #b05449;
+  border: 2px solid #b05449;
   border-radius: 10px;
   font-size: 16px;
   padding: 6px;
   margin: 20px;
   margin-bottom: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .load-more:hover {
-  background-color: #ffd4c5;
-  border: 2px solid #e4bfb3;
+  background-color: #e1c1b7;
+  border: 2px solid #e1c1b7;
 }
 
 .movie-popup-container {
