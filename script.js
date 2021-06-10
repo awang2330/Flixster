@@ -17,13 +17,23 @@ const inputField = document.querySelector("input")
 const loadMore = document.querySelector(".load-more")
 const heading = document.querySelector(".heading")
 const exitSearch = document.querySelector(".exit-search")
+// const moviePopup = document.querySelectorAll(".movie-popup")
+// const movieImages = document.querySelectorAll(".movie-image")
 
 /* Event Listeners */
 searchMovie.addEventListener("submit", displaySearchResults)
 loadMore.addEventListener("click", loadMoreMovies)
 inputField.addEventListener("click", clearMovieGrid)
 exitSearch.addEventListener("click", reloadCurrentMovies) // clear past movies & display current movies
+// for (let i = 0; i < movieImages.length; i++) {
+//   console.log(movieImages[i])
+//   movieImages[i].addEventListener("click", () => {
+//     moviePopup[i].style.visibility = "visible"
+//   })
+// }
 
+// console.log(movieImages)
+// console.log(moviePopup)
 
 /** Displays the movie grid by adding each movie from a movie list */
 async function updateMovieGrid() {
@@ -42,17 +52,19 @@ async function updateMovieGrid() {
   const movieImages = document.querySelectorAll(".movie-image")
 
   console.log(movieImages)
+  console.log(moviePopup)
 
   for (let i = 0; i < movieImages.length; i++) {
-    console.log(movieImages[i])
     movieImages[i].addEventListener("click", () => {
+      console.log(i)
       moviePopup[i].style.visibility = "visible"
     })
- }
+  }
 }
 
 /** Take in a movie object and display the movie image, movie title and movie votes */
 function addMovieToGrid(movie) {
+  
   return `
     <div class="movie-container">
       <div class="movie-image">
@@ -60,8 +72,13 @@ function addMovieToGrid(movie) {
       </div>
       <div class="movie-votes">⭐${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
-      <div class="movie-popup">
-        ${movie.overview}
+      <div class="movie-popup-container">
+        <div class="movie-popup">
+          <div class="popup-img">
+            <img src=${imageURL}original/${movie.backdrop_path} alt="">
+          </div>
+          <span class="movie-overview">${movie.overview}</span>
+        </div>
       </div>
     </div>
   `
@@ -102,6 +119,7 @@ function loadMoreMovies() {
 
 function reloadCurrentMovies() {
   movieGrid.innerHTML = ``
+  heading.classList.remove("hidden")
   heading.innerHTML = "Now playing"
   updateMovieGrid()
 }
@@ -124,13 +142,6 @@ function clickPopUp() {
  }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  const moviePopup = document.getElementsByClassName('movie-popup')
-  console.log(document.getElementsByClassName('movie-popup').length)
-})
-
-// addEventListener('click', loadPopUp(this))
-
 /*
 * functions here execute as soon as the page loads
 */
@@ -140,5 +151,4 @@ window.onload = function () {
 
   // pop up appear on click
   // clickPopUp()
-
 }

@@ -122,19 +122,37 @@ button {
   border: 2px solid #e4bfb3;
 }
 
-.movie-popup {
+.movie-popup-container {
   position: fixed;
+  visibility: hidden;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.movie-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+  padding: 20px;
+  background: #57394a;
+}
+
+.popup-img, .movie-overview {
+}
+
+.popup-img img {
+  width: 100%;
 }
 
 /* Responsive */
