@@ -8,7 +8,6 @@ const searchMovieURL = "https://api.themoviedb.org/3/search/movie?"
 
 /* Other variables */
 var pageNum = 1
-var popupNum = 0
 
 /* Query Selectors */
 const movieGrid = document.querySelector('#movie-grid')
@@ -42,8 +41,6 @@ async function updateMovieGrid() {
     movieImages[i].addEventListener("click", () => {
       moviePopup[i].style.visibility = "visible"
       moviePopup[i].style.animation = "fadeInAnimation ease 2s"
-      popupNum = i
-
     })
   }
 
@@ -111,7 +108,7 @@ async function displaySearchResults(event) {
   for (let i = 0; i < movieImages.length; i++) {
     movieImages[i].addEventListener("click", () => {
       moviePopup[i].style.visibility = "visible"
-      popupNum = i
+      moviePopup[i].style.animation = "fadeInAnimation ease 2s"
     })
   }
 
