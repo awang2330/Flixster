@@ -26,9 +26,8 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 - [ ] Implement anything else that you can get done to improve the app functionality!
 
 ### Walkthough GIF
-
 <img src="imgs/popup:loadmore.gif" width=250><br>
-<img src="search.gif" width=250><br>
+<img src="imgs/search.gif" width=250><br>
 
 ### Reflection
 
