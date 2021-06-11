@@ -5,9 +5,14 @@ const apiKey = "ec9d43fea05c5d5d0c487254238e6858"
 const nowPlayingMovieURL = "https://api.themoviedb.org/3/movie/now_playing?"
 const imageURL = "https://image.tmdb.org/t/p/"
 const searchMovieURL = "https://api.themoviedb.org/3/search/movie?"
+const movieVideos = "https://api.themoviedb.org/3/movie/"
+const youtubeVideo = "https://www.youtube.com/embed/"
 
 /* Other variables */
 var pageNum = 1
+// var moviePopup = document.querySelectorAll(".movie-popup-container")
+// var movieImages = document.querySelectorAll(".movie-image")
+// console.log(moviePopup)
 
 /* Query Selectors */
 const movieGrid = document.querySelector('#movie-grid')
@@ -37,6 +42,10 @@ async function updateMovieGrid() {
   const moviePopup = document.querySelectorAll(".movie-popup-container")
   const movieImages = document.querySelectorAll(".movie-image")
 
+  moviePopupAppear(movieImages, moviePopup)
+}
+
+function moviePopupAppear(movieImages, moviePopup) {
   for (let i = 0; i < movieImages.length; i++) {
     movieImages[i].addEventListener("click", () => {
       moviePopup[i].style.visibility = "visible"
@@ -44,6 +53,7 @@ async function updateMovieGrid() {
     })
   }
 
+  /* Close Popup */
   const popupClose = document.querySelectorAll(".popup-close > button")
   for (let i = 0; i < popupClose.length; i++) {
     popupClose[i].addEventListener("click", () => {
@@ -53,22 +63,33 @@ async function updateMovieGrid() {
   loadMore.classList.remove("hidden")
 }
 
-/** Take in a movie object and display the movie image, movie title and movie votes */
+/** Take in a movie object and display the movie image, movie title and movie votes 
+ * Fetch videos associated with movie id
+*/
 function addMovieToGrid(movie) {
+  // var videosWithMovie = `${movieVideos}${movie.id}videos?api_key=${apiKey}`
+  // var videosWithYoutube =  `${youtubeVideo}${movie.id}`
+  // console.log(videosWithYoutube)
+  // console.log(videosWithMovie)
+  // const responseVideos = await fetch(videosWithMovie)
+  // const responseVideosData = await responseVideos.json()
+  // console.log(responseVideosData)
+  // console.log(movie)
+
   return `
     <div class="movie-container">
       <div class="movie-image">
         <img src="${imageURL}original/${movie.poster_path}" alt="${movie.title}">
+        
       </div>
-      <div class="movie-votes">⭐${movie.vote_average}</div>
+      <div class="movie-votes">⭐ ${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
       <div class="movie-popup-container">
         <div class="movie-popup">
           <div class="popup-close">
-            <div class="movie-title">${movie.title} | ⭐${movie.vote_average}</div>
+            <div class="movie-title">${movie.title} | ⭐ ${movie.vote_average}</div>
             <button type="submit">x</button>
           </div>
-          
           <div class="popup-img">
             <img src=${imageURL}original/${movie.backdrop_path} alt="">
           </div>
@@ -105,20 +126,7 @@ async function displaySearchResults(event) {
   const moviePopup = document.querySelectorAll(".movie-popup-container")
   const movieImages = document.querySelectorAll(".movie-image")
 
-  for (let i = 0; i < movieImages.length; i++) {
-    movieImages[i].addEventListener("click", () => {
-      moviePopup[i].style.visibility = "visible"
-      moviePopup[i].style.animation = "fadeInAnimation ease 2s"
-    })
-  }
-
-  const popupClose = document.querySelectorAll(".popup-close > button")
-  for (let i = 0; i < popupClose.length; i++) {
-    popupClose[i].addEventListener("click", () => {
-      moviePopup[i].style.visibility = "hidden"
-    })
-  }
-  // loadMore.classList.remove("hidden")
+  moviePopupAppear(movieImages, moviePopup)
 }
 
 /** Clear movie grid area when search bar is clicked */
