@@ -2,7 +2,7 @@
 
 Submitted by: **Ann Wang**
 
-Estimated time spent: **13** hours spent in total
+Estimated time spent: **16** hours spent in total
 
 Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
@@ -22,14 +22,13 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 - [ ] Deploy website using GitHub Pages. 
 - [Y] Allow user to view more details about a movie within a popup.
 - [Y] Improve the user experience through CSS & animation.
-- [ ] Allow movie video trailers to be played using [embedded YouTube](https://support.google.com/youtube/answer/171780?hl=en)
+- [Y] Allow movie video trailers to be played using [embedded YouTube](https://support.google.com/youtube/answer/171780?hl=en)
 - [ ] Implement anything else that you can get done to improve the app functionality!
 
 ### Walkthough GIF
 
-`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
-
-<img src="YOUR_GIF_URL_HERE" width=250><br>
+<img src="imgs/popup:loadmore.gif" width=250><br>
+<img src="search.gif" width=250><br>
 
 ### Reflection
 
@@ -39,11 +38,11 @@ After lab 3 and learning about how to use APIs, I felt more prepared to complete
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-I would make different sections in the home page with not only the current movies, but also highest rated, featured, etc. This would give the user more selection of movies without searching for a specific movie. I would also add a navigation bar for that. 
+I would make different sections in the home page with not only the current movies, but also highest rated, featured, etc. This would give the user more selection of movies without searching for a specific movie. I would also add a navigation bar for that. I would also debug for why video trailers are not loading for 
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I was able to explain how some of my code worked and what bugs I encountered and fixed. I noticed that one of my peers has a live search bar where the seach results are appearing as he was typing and that was something cool that I would like to try. Also, I heard that someone made a back-to-top button that I would also like to try out!
 
 ### Open-source libraries used
 
@@ -51,4 +50,4 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out to Carlos for explains CSS Grid, as well as Abhiraj for explaining the live search bar. Also shoutout to all my peers and instructors!

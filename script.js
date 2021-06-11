@@ -43,9 +43,7 @@ async function updateMovieGrid() {
   const embedVideos = document.querySelectorAll(".movie-trailer")
   const popupBackdrop = document.querySelectorAll(".popup-backdrop")
 
-
   moviePopupAppear(movieImages, moviePopup)
-  addEmbedVideo(responseData.results, movieImages)
   embedVideoAppear(popupImages, embedVideos, popupBackdrop)
 }
 
@@ -114,22 +112,26 @@ async function displaySearchResults(event) {
   heading.classList.remove("hidden")
   heading.innerHTML = `Search Results: ${query}`
 
-  responseData.results.forEach(element => {
+  responseData.results.forEach((element, index) => {
     movieGrid.innerHTML += addMovieToGrid(element)
+    addEmbedVideo(element, index)
   })
 
   /** Movie Popup */
   const moviePopup = document.querySelectorAll(".movie-popup-container")
   const movieImages = document.querySelectorAll(".movie-image-container")
+  const popupImages = document.querySelectorAll(".popup-img")
+  const embedVideos = document.querySelectorAll(".movie-trailer")
+  const popupBackdrop = document.querySelectorAll(".popup-backdrop")
+
   moviePopupAppear(movieImages, moviePopup)
-  addEmbedVideo(responseData.results, movieImages)
   embedVideoAppear(popupImages, embedVideos, popupBackdrop)
 }
 
 /** Clear movie grid area when search bar is clicked */
 function clearMovieGrid() {
   movieGrid.innerHTML = ``
-  loadMore.classList.toggle("hidden")
+  loadMore.classList.add("hidden")
   heading.classList.add("hidden")
 }
 
@@ -141,6 +143,7 @@ function loadMoreMovies() {
 
 /* Reload to now playing movie grid */
 function reloadCurrentMovies() {
+  pageNum = 1
   movieGrid.innerHTML = ``
   heading.classList.remove("hidden")
   heading.innerHTML = "Now playing"
@@ -149,24 +152,20 @@ function reloadCurrentMovies() {
 
 /* Fetch the video associated with movie */
 async function addEmbedVideo(element, index) {
-  var videosWithMovie
-  videosWithMovie = `${movieVideos}${element.id}/videos?api_key=${apiKey}`
+  const videosWithMovie = `${movieVideos}${element.id}/videos?api_key=${apiKey}`
   const responseVideos = await fetch(videosWithMovie)
   const responseVideosData = await responseVideos.json()
   var videosWithYoutube = `${youtubeVideo}${responseVideosData.results[0].key}`
   
   const movieTrailerVideos = document.querySelectorAll(".movie-trailer")
   movieTrailerVideos[index].src = videosWithYoutube
-  console.log(movieTrailerVideos[index].src)
 }
 
 function embedVideoAppear(popupImages, embedVideos, popupBackdrop) {
-  console.log(popupBackdrop)
   popupImages.forEach((element, index) => {
     element.addEventListener("mouseover", () => {
       embedVideos[index].classList.remove("hidden")
       popupBackdrop[index].classList.add("hidden")
-      embedVideos[index].style.height = popupBackdrop[index].style.height
     })
   })
 
