@@ -31,8 +31,6 @@ async function updateMovieGrid() {
   const response = await fetch(nowPlayingMovieSearch)
   const responseData = await response.json()
 
-  const movieTrailerVideos = document.querySelectorAll(".movie-trailer")
-  console.log(movieTrailerVideos)
   responseData.results.forEach((element, index) => {
     movieGrid.innerHTML += addMovieToGrid(element)
     addEmbedVideo(element, index)
@@ -41,11 +39,14 @@ async function updateMovieGrid() {
   /** Movie Popup */
   const moviePopup = document.querySelectorAll(".movie-popup-container")
   const movieImages = document.querySelectorAll(".movie-image-container")
+  const popupImages = document.querySelectorAll(".popup-img")
   const embedVideos = document.querySelectorAll(".movie-trailer")
+  const popupBackdrop = document.querySelectorAll(".popup-backdrop")
+
 
   moviePopupAppear(movieImages, moviePopup)
   addEmbedVideo(responseData.results, movieImages)
-  embedVideoAppear(movieImages, embedVideos)
+  embedVideoAppear(popupImages, embedVideos, popupBackdrop)
 }
 
 /** Movie popup fade in and close on click */
@@ -75,7 +76,6 @@ function addMovieToGrid(movie) {
     <div class="movie-container">
       <div class="movie-image-container">
         <img class="movie-image" src="${imageURL}original/${movie.poster_path}" alt="${movie.title}">
-        <iframe width="560" height="315" class="movie-trailer hidden" src=""></iframe>
       </div>
       <div class="movie-votes">⭐ ${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
@@ -86,7 +86,8 @@ function addMovieToGrid(movie) {
             <button type="submit">x</button>
           </div>
           <div class="popup-img">
-            <img src=${imageURL}original/${movie.backdrop_path} alt="">
+            <img class="popup-backdrop"src=${imageURL}original/${movie.backdrop_path} alt="">
+            <iframe class="movie-trailer hidden" src=""></iframe>
           </div>
           <div>
             <span>Release Date: ${movie.release_date}</span>
@@ -121,6 +122,8 @@ async function displaySearchResults(event) {
   const moviePopup = document.querySelectorAll(".movie-popup-container")
   const movieImages = document.querySelectorAll(".movie-image-container")
   moviePopupAppear(movieImages, moviePopup)
+  addEmbedVideo(responseData.results, movieImages)
+  embedVideoAppear(popupImages, embedVideos, popupBackdrop)
 }
 
 /** Clear movie grid area when search bar is clicked */
@@ -157,20 +160,20 @@ async function addEmbedVideo(element, index) {
   console.log(movieTrailerVideos[index].src)
 }
 
-function embedVideoAppear(movieImagesContainer, embedVideos) {
-  const movieImages = document.querySelectorAll(".movie-image")
-  movieImagesContainer.forEach((element, index) => {
+function embedVideoAppear(popupImages, embedVideos, popupBackdrop) {
+  console.log(popupBackdrop)
+  popupImages.forEach((element, index) => {
     element.addEventListener("mouseover", () => {
-      console.log(element)
       embedVideos[index].classList.remove("hidden")
-      movieImages[index].classList.add("hidden")
+      popupBackdrop[index].classList.add("hidden")
+      embedVideos[index].style.height = popupBackdrop[index].style.height
     })
   })
 
-  movieImagesContainer.forEach((element, index) => {
+  popupImages.forEach((element, index) => {
     element.addEventListener("mouseleave", () => {
-      embedVideos[index].classList.toggle("hidden")
-      movieImages[index].classList.toggle("hidden")
+      embedVideos[index].classList.add("hidden")
+      popupBackdrop[index].classList.remove("hidden")
     })
   })
 }
