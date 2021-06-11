@@ -76,18 +76,18 @@ button {
 }
 
 /* Movie Containers */
-.movie-container {
+.movie-container, .movie-trailer {
   margin-bottom: 15px;
   width: 180px;
   font-family: 'Nunito', sans-serif;
 }
 
-.movie-image {
+.movie-image-container {
   border-radius: 4px;
   overflow: hidden;
 }
 
-.movie-image img {
+.movie-image-container img {
   width: 100%;
 }
 

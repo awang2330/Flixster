@@ -10,9 +10,6 @@ const youtubeVideo = "https://www.youtube.com/embed/"
 
 /* Other variables */
 var pageNum = 1
-// var moviePopup = document.querySelectorAll(".movie-popup-container")
-// var movieImages = document.querySelectorAll(".movie-image")
-// console.log(moviePopup)
 
 /* Query Selectors */
 const movieGrid = document.querySelector('#movie-grid')
@@ -34,17 +31,24 @@ async function updateMovieGrid() {
   const response = await fetch(nowPlayingMovieSearch)
   const responseData = await response.json()
 
-  responseData.results.forEach(element => {
+  const movieTrailerVideos = document.querySelectorAll(".movie-trailer")
+  console.log(movieTrailerVideos)
+  responseData.results.forEach((element, index) => {
     movieGrid.innerHTML += addMovieToGrid(element)
+    addEmbedVideo(element, index)
   })
 
   /** Movie Popup */
   const moviePopup = document.querySelectorAll(".movie-popup-container")
-  const movieImages = document.querySelectorAll(".movie-image")
+  const movieImages = document.querySelectorAll(".movie-image-container")
+  const embedVideos = document.querySelectorAll(".movie-trailer")
 
   moviePopupAppear(movieImages, moviePopup)
+  addEmbedVideo(responseData.results, movieImages)
+  embedVideoAppear(movieImages, embedVideos)
 }
 
+/** Movie popup fade in and close on click */
 function moviePopupAppear(movieImages, moviePopup) {
   for (let i = 0; i < movieImages.length; i++) {
     movieImages[i].addEventListener("click", () => {
@@ -67,20 +71,11 @@ function moviePopupAppear(movieImages, moviePopup) {
  * Fetch videos associated with movie id
 */
 function addMovieToGrid(movie) {
-  // var videosWithMovie = `${movieVideos}${movie.id}videos?api_key=${apiKey}`
-  // var videosWithYoutube =  `${youtubeVideo}${movie.id}`
-  // console.log(videosWithYoutube)
-  // console.log(videosWithMovie)
-  // const responseVideos = await fetch(videosWithMovie)
-  // const responseVideosData = await responseVideos.json()
-  // console.log(responseVideosData)
-  // console.log(movie)
-
   return `
     <div class="movie-container">
-      <div class="movie-image">
-        <img src="${imageURL}original/${movie.poster_path}" alt="${movie.title}">
-        
+      <div class="movie-image-container">
+        <img class="movie-image" src="${imageURL}original/${movie.poster_path}" alt="${movie.title}">
+        <iframe width="560" height="315" class="movie-trailer hidden" src=""></iframe>
       </div>
       <div class="movie-votes">⭐ ${movie.vote_average}</div>
       <div class="movie-title">${movie.title}</div>
@@ -124,8 +119,7 @@ async function displaySearchResults(event) {
 
   /** Movie Popup */
   const moviePopup = document.querySelectorAll(".movie-popup-container")
-  const movieImages = document.querySelectorAll(".movie-image")
-
+  const movieImages = document.querySelectorAll(".movie-image-container")
   moviePopupAppear(movieImages, moviePopup)
 }
 
@@ -142,11 +136,43 @@ function loadMoreMovies() {
   updateMovieGrid()
 }
 
+/* Reload to now playing movie grid */
 function reloadCurrentMovies() {
   movieGrid.innerHTML = ``
   heading.classList.remove("hidden")
   heading.innerHTML = "Now playing"
   updateMovieGrid()
+}
+
+/* Fetch the video associated with movie */
+async function addEmbedVideo(element, index) {
+  var videosWithMovie
+  videosWithMovie = `${movieVideos}${element.id}/videos?api_key=${apiKey}`
+  const responseVideos = await fetch(videosWithMovie)
+  const responseVideosData = await responseVideos.json()
+  var videosWithYoutube = `${youtubeVideo}${responseVideosData.results[0].key}`
+  
+  const movieTrailerVideos = document.querySelectorAll(".movie-trailer")
+  movieTrailerVideos[index].src = videosWithYoutube
+  console.log(movieTrailerVideos[index].src)
+}
+
+function embedVideoAppear(movieImagesContainer, embedVideos) {
+  const movieImages = document.querySelectorAll(".movie-image")
+  movieImagesContainer.forEach((element, index) => {
+    element.addEventListener("mouseover", () => {
+      console.log(element)
+      embedVideos[index].classList.remove("hidden")
+      movieImages[index].classList.add("hidden")
+    })
+  })
+
+  movieImagesContainer.forEach((element, index) => {
+    element.addEventListener("mouseleave", () => {
+      embedVideos[index].classList.toggle("hidden")
+      movieImages[index].classList.toggle("hidden")
+    })
+  })
 }
 
 /*
