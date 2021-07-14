@@ -1,7 +1,7 @@
 /* Assignment 1: Flixster */
 
 /* API Info */
-const apiKey = "ec9d43fea05c5d5d0c487254238e6858"
+const apiKey = ""
 const nowPlayingMovieURL = "https://api.themoviedb.org/3/movie/now_playing?"
 const imageURL = "https://image.tmdb.org/t/p/"
 const searchMovieURL = "https://api.themoviedb.org/3/search/movie?"
